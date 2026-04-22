@@ -1,0 +1,8 @@
+[phases.install]
+cmds = ["pip install -r requirements.txt"]
+
+[phases.build]
+cmds = ["python -c \"from fetch_open_data import load_311_data; load_311_data()\""]
+
+[start]
+cmd = "gunicorn dashboard_cloud:server --bind 0.0.0.0:$PORT --timeout 120 --workers 1"
